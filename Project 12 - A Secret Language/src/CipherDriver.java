@@ -1,9 +1,13 @@
-/*
- * Stephen Ingram
- * 4/20/2017
- * 
- * This program creates a GUI that can encode and decode
- *  simple substitution and transposition ciphers.
+/**
+ * Class        : CipherDriver
+ * Project 12   : A secret Language
+ * @author      : ar25 (Yves Ouellet)
+ * Email        : yves.ouellet@bcbssc.com
+ * Creation     : 2017-04-23
+ * Last Mod.    : 2017-04-27
+ * Due Date     : 2017-04-27
+ *
+ * Driver class for the Secret Language Cipher 
  */
 
 import java.util.ArrayList;
@@ -16,6 +20,6 @@ public class CipherDriver {
 		CipherGUI gui = new CipherGUI();
 		gui.setVisible(true);
 
-	} // End main
+	}  // End bracket of main method
 	
-} // End CipherDriver
+}   // End bracket of CipherDriver class

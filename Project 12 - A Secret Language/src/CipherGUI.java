@@ -9,29 +9,66 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JCheckBox;
 
+/**
+ * Class        : CipherGUI
+ * Project 12   : A secret Language
+ * @author      : ar25 (Yves Ouellet)
+ * Email        : yves.ouellet@bcbssc.com
+ * Creation     : 2017-04-23
+ * Last Mod.    : 2017-04-27
+ * Due Date     : 2017-04-27
+ *
+ * GUI class for the Secret Language Cipher
+ */
+
+
 public class CipherGUI extends JFrame implements ActionListener{
 
+    // Declare constants
+    private static final int HEIGHT_SIZE = 300;
+    private static final int WIDTH_SIZE = 400;
+    private static final String BUTTON_INPUT_ENCODE = "Encode";
+    private static final String BUTTON_INPUT_DECODE = "Decode";
+    private static final String LABEL_INPUT_MESSAGE = "Enter the message you wish to encode or decode below";
+    private static final String LABEL_INPUT_SUBSTITUTION = "substitution shifts";
+    private static final String LABEL_INPUT_TRANSPOSITION = "transposition cycles";
+    private static final String LABEL_INPUT_NEW_MESSAGE = "New Message:";    
+    private static final String CHECKBOX_SUBSTITUTION = "Use Substitution";
+    private static final String CHECKBOX_TRANSPOSITION = "Use Transposition";
+    private static final String CIPHER_TITLE = "Cipher";
+    
+    // Declare Object
 	private Container contentPane;
-	private JButton btnEncode = new JButton("Encode");
-	private JButton btnDecode = new JButton("Decode");
-	private JLabel lblInput = new JLabel("Enter the message you wish to encode or decode below");
-	private JLabel lblSub = new JLabel("substitution shifts");
-	private JLabel lblTrans = new JLabel("transposition cycles");
-	private JLabel resultsTitleLabel = new JLabel("New Message:");
+	
+	// Declare JButton
+	private JButton btnEncode = new JButton(BUTTON_INPUT_ENCODE);
+	private JButton btnDecode = new JButton(BUTTON_INPUT_DECODE);
+
+	// Declare JLabel
+	private JLabel lblInput = new JLabel(LABEL_INPUT_MESSAGE);
+	private JLabel lblSub = new JLabel(LABEL_INPUT_SUBSTITUTION);
+	private JLabel lblTrans = new JLabel(LABEL_INPUT_TRANSPOSITION);
+	private JLabel resultsTitleLabel = new JLabel(LABEL_INPUT_NEW_MESSAGE);
+
+	// Declare JTextField
 	private JTextField txtShift = new JTextField();
 	private JTextField txtShuffle = new JTextField();
 	private JTextField txtInput = new JTextField();
 	private JTextField txtOutput = new JTextField();
-	private JCheckBox chckbxSubstitution = new JCheckBox("Use Substitution");
-	private JCheckBox chckbxTransposition = new JCheckBox("Use Transposition");
 	
+	// Declare JCheckBox
+	private JCheckBox chckbxSubstitution = new JCheckBox(CHECKBOX_SUBSTITUTION);
+	private JCheckBox chckbxTransposition = new JCheckBox(CHECKBOX_TRANSPOSITION);
+	
+	// Cipher GUI method
 	CipherGUI(){
 		super();
-		this.setTitle("Cipher");
-		this.setSize(400,300);
+		this.setTitle(CIPHER_TITLE);
+		this.setSize(HEIGHT,WIDTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.contentPane = getContentPane();
+		
 		SpringLayout springLayout = new SpringLayout();
 		springLayout.putConstraint(SpringLayout.NORTH, txtOutput, 6, SpringLayout.SOUTH, resultsTitleLabel);
 		springLayout.putConstraint(SpringLayout.WEST, txtOutput, 0, SpringLayout.WEST, lblInput);
@@ -59,7 +96,9 @@ public class CipherGUI extends JFrame implements ActionListener{
 		springLayout.putConstraint(SpringLayout.EAST, txtInput, 0, SpringLayout.EAST, lblInput);
 		springLayout.putConstraint(SpringLayout.NORTH, lblInput, 10, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblInput, 10, SpringLayout.WEST, getContentPane());
+
 		getContentPane().setLayout(springLayout);
+
 		this.contentPane.add(this.lblInput);
 		this.contentPane.add(this.txtOutput);
 		this.contentPane.add(this.txtInput);
@@ -79,7 +118,7 @@ public class CipherGUI extends JFrame implements ActionListener{
 		this.btnEncode.addActionListener(this);
 		this.btnDecode.addActionListener(this);
 		
-	}//End constructor
+	}//End bracket of constructor constructor
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -94,13 +133,16 @@ public class CipherGUI extends JFrame implements ActionListener{
 				txtOutput.setText(sub.encode(input));
 			}else if(e.getSource() == this.btnDecode){
 				txtOutput.setText(sub.decode(input));
-			}  // End if
+			}  // End bracket of inner if statement 
 		}else if(chckbxTransposition.isSelected()){
 			if(e.getSource() == this.btnEncode){
 				txtOutput.setText(trans.encode(input));
 			} else if(e.getSource() == this.btnDecode){
 				txtOutput.setText(trans.decode(input));
-			}  // End if
-		}// End if
-	} // End actionPerformed
-} // End class
+			}  // End bracket of inner if statement 
+			
+		}// End bracket of outer if statement
+		
+	} // End bracket of actionPerformed method
+	
+}   // End bracket of CipherGUI class
